@@ -1,0 +1,17 @@
+In Oracle VM Virtual box
+1. Created centos template from osboxes.org
+2. Created one ansible cntroller and 3 nodes(while creating vm gerated new mac address for new network adapaters
+3. ran below command to set authorized access
+cp .ssh/id_rsa.pub authorized_keys
+chmod 644 .ssh/authorized_keys
+ssh-copy-id osboxes@192.168.0.108
+ssh-copy-id osboxes@192.168.0.109
+ssh-copy-id osboxes@192.168.0.103
+4. Ran command to verify the ping
+ansible -m ping all
+5.installed git using command sudo yum install git -y
+6.git clone https://github.com/ctienshi/kubernetes-ansible
+7. navigate to kubernetes-ansible/centos/playbooks/env_variables and added master node ip address as ad_addr: 192.168.0.108
+8. added IP Addresses of the worker nodes and the master node in the “hosts” file.
+9.ansible-playbook setup_master_node.yml
+10.ansible-playbook setup_worker_nodes.yml
